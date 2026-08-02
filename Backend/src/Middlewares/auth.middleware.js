@@ -1,6 +1,7 @@
 const { getMe } = require("../controllers/auth.controller");
 const userModel = require("../models/user.models")
 const jwt = require("jsonwebtoken")
+const redis = require("../config/cache")
 
 
 async function authUser(req , res, next){
