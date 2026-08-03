@@ -1,0 +1,471 @@
+.login-page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  background: #0b0b0b;
+  position: relative;
+  overflow: hidden;
+}
+
+.login-page::before {
+  content: "";
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  top: -160px;
+  left: -160px;
+  border-radius: 50%;
+  background: rgba(255, 153, 0, .08);
+  filter: blur(90px);
+}
+
+.login-page::after {
+  content: "";
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  right: -160px;
+  bottom: -160px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.03);
+  filter: blur(90px);
+}
+
+.login-card {
+  width: 100%;
+  max-width: 480px;
+  position: relative;
+  z-index: 2;
+
+  background: linear-gradient(
+    180deg,
+    #1d1d1d,
+    #141414
+  );
+
+  border: 1px solid #343434;
+  border-radius: 22px;
+
+  padding: 20px 28px 28px;
+
+  box-shadow: 0 20px 50px rgba(0,0,0,.55);
+
+  backdrop-filter: blur(16px);
+
+  transition: .3s;
+}
+
+.login-card:hover {
+  border-color: #565656;
+}
+/* ==========================
+        Brand Logo
+========================== */
+
+.brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 8px;
+}
+
+.brand-logo {
+  width: 160px;
+  height: auto;
+
+  display: block;
+  object-fit: contain;
+
+  transition: transform .3s ease;
+}
+
+.brand-logo:hover {
+  transform: scale(1.03);
+}
+
+/* ==========================
+          Tagline
+========================== */
+
+.tagline {
+  text-align: center;
+  color: #9b9b9b;
+
+  font-size: 14px;
+  line-height: 1.5;
+
+  margin-bottom: 18px;
+}
+
+/* ==========================
+          Heading
+========================== */
+
+.heading {
+  text-align: center;
+  margin-bottom: 24px;
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+
+    margin-bottom: 6px;
+  }
+
+  p {
+    color: #8d8d8d;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+  }
+}
+/* ==========================
+        Brand Logo
+========================== */
+
+.brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 8px;
+}
+
+.brand-logo {
+  width: 160px;
+  height: auto;
+
+  display: block;
+  object-fit: contain;
+
+  transition: transform .3s ease;
+}
+
+.brand-logo:hover {
+  transform: scale(1.03);
+}
+
+/* ==========================
+          Tagline
+========================== */
+
+.tagline {
+  text-align: center;
+  color: #9b9b9b;
+
+  font-size: 14px;
+  line-height: 1.5;
+
+  margin-bottom: 18px;
+}
+
+/* ==========================
+          Heading
+========================== */
+
+.heading {
+  text-align: center;
+  margin-bottom: 24px;
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+
+    margin-bottom: 6px;
+  }
+
+  p {
+    color: #8d8d8d;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+  }
+}
+/* ==========================
+        Login Form
+========================== */
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ==========================
+        Input Group
+========================== */
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  label {
+    color: #f5f5f5;
+    font-size: 14px;
+    font-weight: 500;
+    margin-left: 2px;
+  }
+}
+
+/* ==========================
+        Input Box
+========================== */
+
+.input-box {
+  width: 100%;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 0 16px;
+
+  background: #1b1b1b;
+
+  border: 1px solid #333;
+  border-radius: 12px;
+
+  transition: all .3s ease;
+}
+
+.input-box:hover {
+  border-color: #4f4f4f;
+}
+
+.input-box:focus-within {
+  border-color: #ff9f1c;
+  box-shadow: 0 0 0 3px rgba(255,159,28,.15);
+}
+
+/* ==========================
+            Icons
+========================== */
+
+.icon {
+  font-size: 18px;
+  color: #8d8d8d;
+  flex-shrink: 0;
+}
+
+.eye {
+  cursor: pointer;
+  transition: .3s;
+}
+
+.eye:hover {
+  color: #ff9f1c;
+}
+
+/* ==========================
+            Input
+========================== */
+
+.input-box input {
+  flex: 1;
+  height: 100%;
+
+  background: transparent;
+  border: none;
+  outline: none;
+
+  color: #fff;
+  font-size: 14px;
+}
+
+.input-box input::placeholder {
+  color: #7d7d7d;
+}
+
+/* ==========================
+      Forgot Password
+========================== */
+
+.forgot-password {
+  display: flex;
+  justify-content: flex-end;
+
+  margin-top: -6px;
+
+  a {
+    color: #9b9b9b;
+    font-size: 13px;
+    transition: .3s;
+  }
+
+  a:hover {
+    color: #ff9f1c;
+  }
+}
+/* ==========================
+        Login Button
+========================== */
+
+.login-form button {
+  width: 100%;
+  height: 52px;
+
+  border: none;
+  outline: none;
+
+  border-radius: 12px;
+
+  background: linear-gradient(
+    135deg,
+    #ff9810 0%,
+    #ffb84d 100%
+  );
+
+  color: #111;
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: all .3s ease;
+}
+
+.login-form button:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 25px rgba(255, 152, 16, .35);
+}
+
+.login-form button:active {
+  transform: scale(.98);
+}
+
+/* ==========================
+        Bottom Text
+========================== */
+
+.bottom-text {
+  margin-top: 18px;
+
+  text-align: center;
+
+  color: #9b9b9b;
+  font-size: 14px;
+
+  span {
+    color: #ff9810;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .3s;
+  }
+
+  span:hover {
+    color: #ffb84d;
+  }
+}
+
+/* ==========================
+        Card Effects
+========================== */
+
+.login-card::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  border-radius: inherit;
+
+  background:
+    radial-gradient(circle at 1px 1px, rgba(255,255,255,.08) 1px, transparent 0) left center / 22px 22px repeat-y,
+    radial-gradient(circle at 1px 1px, rgba(255,255,255,.08) 1px, transparent 0) right center / 22px 22px repeat-y;
+
+  opacity: .18;
+
+  pointer-events: none;
+}
+
+.login-card::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  border-radius: inherit;
+
+  border: 1px solid rgba(255,255,255,.05);
+
+  pointer-events: none;
+}
+
+/* ==========================
+        Animation
+========================== */
+
+.login-card {
+  animation: fadeUp .5s ease;
+}
+
+@keyframes fadeUp {
+
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================
+        Responsive
+========================== */
+
+@media (max-width: 768px) {
+
+  .login-page {
+    padding: 16px;
+  }
+
+  .login-card {
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  .brand-logo {
+    width: 140px;
+  }
+
+  .heading h2 {
+    font-size: 1.7rem;
+  }
+
+  .tagline {
+    font-size: 13px;
+  }
+
+  .input-box,
+  .login-form button {
+    height: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .brand-logo {
+    width: 120px;
+  }
+
+  .heading h2 {
+    font-size: 1.5rem;
+  }
+
+  .input-box {
+    padding: 0 14px;
+  }
+}
