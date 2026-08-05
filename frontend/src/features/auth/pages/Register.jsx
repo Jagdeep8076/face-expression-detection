@@ -8,13 +8,33 @@ import {
   FiEyeOff,
 } from "react-icons/fi";
 import logo from "../../../assets/logo.png";
-import {Link} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth"
 
 const Register = () => {
+  const navigate = useNavigate();
+
+ 
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  
+
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
+
+  const { loading, handleRegister } = useAuth()
+  async function handleSubmit(e) {
+    e.preventDefault();
+  await handleRegister({email ,username,password})
+
+   console.log(response);
+    navigate("/");
+  }
+
   return (
+  
     <div className="login-page">
       <div className="login-card">
 
@@ -34,7 +54,7 @@ const Register = () => {
           <p>Create your FaceBeat account</p>
         </div>
 
-        <form className="login-form">
+     <form onSubmit={handleSubmit} className="login-form">
 
           <div className="input-group">
             <label>Full Name</label>
@@ -44,8 +64,7 @@ const Register = () => {
 
               <input
                 type="text"
-                placeholder="Enter your full name"
-              />
+                placeholder="Enter your full name"/>
             </div>
           </div>
 
@@ -57,8 +76,8 @@ const Register = () => {
 
               <input
                 type="text"
-                placeholder="Choose a username"
-              />
+                placeholder="Choose a username" value={username}
+               onChange={(e) => setUsername(e.target.value)}/>
             </div>
           </div>
 
@@ -71,7 +90,8 @@ const Register = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
-              />
+               value={email}
+             onChange={(e) => setEmail(e.target.value)}/>
             </div>
           </div>
 
@@ -84,7 +104,8 @@ const Register = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Create a password"
-              />
+               value={password}
+              onChange={(e) => setPassword(e.target.value)}/>
 
               {showPassword ? (
                 <FiEyeOff
@@ -108,8 +129,7 @@ const Register = () => {
 
               <input
                 type={showConfirmPassword ? "text" : "password"}
-                placeholder="Confirm your password"
-              />
+                placeholder="Confirm your password"/>
 
               {showConfirmPassword ? (
                 <FiEyeOff
@@ -140,4 +160,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Register

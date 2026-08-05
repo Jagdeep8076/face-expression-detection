@@ -3,14 +3,22 @@ import "../style/login.scss";
 import { FiMail, FiLock, FiEye } from "react-icons/fi";
 import logo from "../../../assets/logo.png";
 import { Link } from "react-router-dom"
-import { useAuth } from "../hooks/auth.api"
+import { useAuth } from "../hooks/useAuth"
+import { useNavigate }  from "react-router-dom"
 
 const Login = () => {
 
 const {  loading ,handleLogin } = useAuth()
 
-async function handleSumbit(e){
-  e.preventDefalut()
+const navigate = useNavigate()
+
+const [email, setEmail] = useState("")
+const [password, setPassword] = useState("")
+
+async function handleSubmit(e){
+  e.preventDefault()
+  await handleLogin({email , password})
+  navigate("/")
 
 }
     const [showPassword, setShowPassword] = useState(false);
@@ -32,7 +40,7 @@ async function handleSumbit(e){
           <h2>Welcome Back</h2>
           <p>Login to continue to your account</p>
         </div>
-        <form onSubmit={handleSumbit} className="login-form">
+        <form onSubmit={handleSubmit} className="login-form">
 
           <div className="input-group">
             <label>Email</label>
@@ -42,7 +50,8 @@ async function handleSumbit(e){
 
               <input
                 type="email"
-                placeholder="Enter your email" />
+                placeholder="Enter your email" value={email}
+                onChange={(e) => setEmail(e.target.value)}/> 
             </div>
           </div>
           <div className="input-group">
@@ -52,11 +61,10 @@ async function handleSumbit(e){
               <FiLock className="icon" />
 
              <input
-  type={showPassword ? "text" : "password"}
-  placeholder="Enter your password"/>
-<FiEye
-  className="icon eye"
-  onClick={() => setShowPassword(!showPassword)}/>
+               type={showPassword ? "text" : "password"}
+                  placeholder="Enter your password"   value={password} onChange={(e) => setPassword(e.target.value)}/>
+        <FiEye className="icon eye"
+              onClick={() => setShowPassword(!showPassword)}/>
             </div>
           </div>
           <div className="forgot-password">
