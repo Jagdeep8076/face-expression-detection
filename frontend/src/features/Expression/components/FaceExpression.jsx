@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { detect, init } from "../utils/utils";
+import { detect, init } from "../utils/utlis"
 
 
 export default function FaceExpression({ onClick = () => { } }) {
@@ -31,16 +31,32 @@ export default function FaceExpression({ onClick = () => { } }) {
         onClick(expression)
     }
 
+return (
+  <div className="face-expression">
 
-    return (
-        <div style={{ textAlign: "center" }}>
-            <video
-                ref={videoRef}
-                style={{ width: "400px", borderRadius: "12px" }}
-                playsInline
-            />
-            <h2>{expression}</h2>
-            <button onClick={handleClick} >Detect expression</button>
-        </div>
-    );
+    <div className="camera-header">
+      <h2>Live Camera</h2>
+
+      <span className="expression-badge">
+        {expression}
+      </span>
+    </div>
+
+    <video
+      ref={videoRef}
+      className="camera"
+      playsInline
+      autoPlay
+      muted
+    />
+
+    <button
+      className="detect-btn"
+      onClick={handleClick}
+    >
+      Detect Expression
+    </button>
+
+  </div>
+)
 }

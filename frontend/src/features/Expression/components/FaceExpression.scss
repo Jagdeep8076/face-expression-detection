@@ -1,0 +1,84 @@
+.face-expression{
+
+    display:flex;
+    flex-direction:column;
+    height:100%;
+}
+
+.camera-header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:18px;
+}
+
+.camera-header h2{
+
+    color:#ff9800;
+
+    font-size:28px;
+}
+
+.expression-badge{
+
+    background:#ff9800;
+
+    color:black;
+
+    padding:8px 18px;
+
+    border-radius:25px;
+
+    font-weight:700;
+}
+
+.camera{
+
+    width:100%;
+
+    height:470px;
+
+    border-radius:15px;
+
+    object-fit:cover;
+
+    background:black;
+
+    border:2px solid rgba(255,165,0,.25);
+}
+
+.detect-btn{
+
+    margin-top:20px;
+
+    width:220px;
+
+    align-self:center;
+
+    height:50px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#ff9800;
+
+    color:black;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.detect-btn:hover{
+
+    background:#ffb84d;
+
+    transform:translateY(-2px);
+}

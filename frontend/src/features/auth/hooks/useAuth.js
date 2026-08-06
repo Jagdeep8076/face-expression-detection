@@ -21,21 +21,30 @@ export const useAuth = () =>{
     }
 
     async function handleGetMe() {
-        setLoading(true)
-        const data = await getMe()
-        setUser(data.user)
-        setLoading(false)
-    }
-        async function handleLogout(){
-            setLoading(false)
-            const data = await logout()
-            setUser(data.user)
-            setLoading(false)
-        }
 
-        useEffect(() =>{
-           handleGetMe() 
-        } , [])
+    try {
+        setLoading(true);
+        const data = await getMe();
+        setUser(data.user);
+    } catch (err) {
+        console.log(err.response?.data);
+        setUser(null);
+    } finally {
+        setLoading(false);
+    }
+    console.log("handleGetMe");
+}
+       async function handleLogout() {
+       setLoading(true);
+       await logout();
+       setUser(null);
+       setLoading(false);
+}
+
+        // useEffect(() =>{
+        //      console.log("useEffect");
+        //    handleGetMe() 
+        // } , [])
 
 
     return ({
