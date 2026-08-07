@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express")
 const cookieParser = require("cookie-parser")
 const cors = require("cors")
@@ -17,4 +18,11 @@ const songRoutes = require("./routes/song.routes")
 app.use("/api/auth", authRoutes)
 app.use("/api/songs", songRoutes)
 
-module.exports = app
+app.use(express.static(path.join(__dirname, "public")));
+
+app.use((req, res) => {
+    res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+module.exports = app;
+

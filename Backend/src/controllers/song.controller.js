@@ -3,62 +3,63 @@ const storageService = require("../services/storage.service")
 const id3 = require("node-id3")
 
 
-async function uploadSong(req,res){
+async function uploadSong(req, res) {
 
-const songBuffer =req.file.buffer
-const { mood } = req.body
+    const songBuffer = req.file.buffer
+    const { mood } = req.body
 
- const tags = id3.read(songBuffer)
+    const tags = id3.read(songBuffer)
 
- const [songFile, posterFile] = await Promise.all([
-    storageService.uploadFile({
-        buffer : songBuffer,
-        filename: tags.title + ".mp3",
-        folder : "/Facebeat/facebeat/songs"
-    }),
-    storageService.uploadFile({
-        buffer: tags.image.imageBuffer,
-        filename: tags.title + ".jpeg",
-        folder : "/Facebeat/facebeat/posters"
-    })
-])
-
-const song = await songModel.create({
-    title: tags.title,
-    url: songFile.url,
-    posterUrl: posterFile.url,
-    mood
-})
-res.status(201).json({
-    message : "Songs create successully",
-    song
-})
-
-}
-
-
-async function getSong(req, res) {
-    const { mood } = req.query
-
-     const song = await songModel.aggregate([
-        {
-            $match: {
-                mood: mood
-            }
-        },
-        {
-            $sample: {
-                size: 1
-            }
-        }
+    const [ songFile, posterFile ] = await Promise.all([
+        storageService.uploadFile({
+            buffer: songBuffer,
+            filename: tags.title + ".mp3",
+            folder : "/Facebeat/facebeat/songs"
+        }),
+        storageService.uploadFile({
+            buffer: tags.image.imageBuffer,
+            filename: tags.title + ".jpeg",
+          folder : "/Facebeat/facebeat/posters"
+        })
     ])
-    res.status(200).json({
-        message: "Song fetched successfully",
+
+    const song = await songModel.create({
+        title: tags.title,
+        url: songFile.url,
+        posterUrl: posterFile.url,
+        mood
+    })
+
+    res.status(201).json({
+        message: "song created successfully",
         song
     })
+
 }
 
-module.exports = {
-    uploadSong,
-    getSong
+async function getSong(req, res) {
+
+    const { mood } = req.query;
+
+    const songs = await songModel.find({
+        mood,
+    });
+
+    if (songs.length === 0) {
+        return res.status(404).json({
+            message: "No songs found for this mood.",
+        });
+    }
+
+    const randomIndex = Math.floor(Math.random() * songs.length);
+
+    const randomSong = songs[randomIndex];
+
+    res.status(200).json({
+        message: "Song fetched successfully.",
+        song: randomSong,
+    });
 }
+
+
+module.exports = { uploadSong, getSong }
