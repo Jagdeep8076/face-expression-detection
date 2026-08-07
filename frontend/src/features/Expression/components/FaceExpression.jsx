@@ -1,16 +1,19 @@
 import { useEffect, useRef, useState } from "react";
-import { detect, init } from "../utils/utlis"
+import { detect, init } from "../utils/utlis";
 
-
-export default function FaceExpression({ onClick = () => { } }) {
+export default function FaceExpression({ onClick = () => {} }) {
     const videoRef = useRef(null);
     const landmarkerRef = useRef(null);
     const streamRef = useRef(null);
 
-    const [ expression, setExpression ] = useState("Detecting...");
+    const [expression, setExpression] = useState("Detecting...");
 
     useEffect(() => {
-        init({ landmarkerRef, videoRef, streamRef });
+        init({
+            landmarkerRef,
+            videoRef,
+            streamRef,
+        });
 
         return () => {
             if (landmarkerRef.current) {
@@ -25,38 +28,42 @@ export default function FaceExpression({ onClick = () => { } }) {
         };
     }, []);
 
-    async function handleClick() {
-        const expression = detect({ landmarkerRef, videoRef, setExpression })
-        console.log(expression)
-        onClick(expression)
+    function handleClick() {
+        const expression = detect({
+            landmarkerRef,
+            videoRef,
+            setExpression,
+        });
+
+        console.log(expression);
+
+        onClick(expression);
     }
 
-return (
-  <div className="face-expression">
+    return (
+        <>
+            <div className="camera-header">
+                <h2>Live Camera</h2>
 
-    <div className="camera-header">
-      <h2>Live Camera</h2>
+                <span className="expression-badge">
+                    {expression}
+                </span>
+            </div>
 
-      <span className="expression-badge">
-        {expression}
-      </span>
-    </div>
+            <video
+                ref={videoRef}
+                className="camera"
+                playsInline
+                autoPlay
+                muted
+            />
 
-    <video
-      ref={videoRef}
-      className="camera"
-      playsInline
-      autoPlay
-      muted
-    />
-
-    <button
-      className="detect-btn"
-      onClick={handleClick}
-    >
-      Detect Expression
-    </button>
-
-  </div>
-)
+            <button
+                className="detect-btn"
+                onClick={handleClick}
+            >
+                Detect Expression
+            </button>
+        </>
+    );
 }
